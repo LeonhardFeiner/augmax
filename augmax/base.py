@@ -25,6 +25,7 @@ class InputType(Enum):
     DENSE = 'dense'
     CONTOUR = 'contour'
     KEYPOINTS = 'keypoints'
+    IGNORE = 'ignore'
 
 PyTree = Union[jnp.ndarray,
                Tuple['PyTree', ...],

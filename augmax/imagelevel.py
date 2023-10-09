@@ -52,7 +52,9 @@ class GridShuffle(ImageLevelTransformation):
         do_apply = jax.random.bernoulli(key1, self.probability)
 
         def transform_single(input, input_type):
-            if same_type(input_type, InputType.IMAGE) or same_type(input_type, InputType.MASK) or same_type(input_type, InputType.DENSE):
+            if same_type(input_type, InputType.IGNORE):
+                return input
+            elif same_type(input_type, InputType.IMAGE) or same_type(input_type, InputType.MASK) or same_type(input_type, InputType.DENSE):
                 raw_image = input
 
                 H, W, *_ = raw_image.shape

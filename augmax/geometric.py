@@ -111,7 +111,9 @@ class GeometricTransformation(Transformation):
         sampling_coords = coordinates.get_coordinate_grid()
 
         def transform_single(input, input_type):
-            if same_type(input_type, InputType.IMAGE) or same_type(input_type, InputType.DENSE):
+            if same_type(input_type, InputType.IGNORE):
+                return input
+            elif same_type(input_type, InputType.IMAGE) or same_type(input_type, InputType.DENSE):
                 # Linear Interpolation for Images
                 return utils.resample_image(input, sampling_coords, order=1, mode='constant')
             elif same_type(input_type, InputType.MASK):
